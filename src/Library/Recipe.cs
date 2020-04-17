@@ -24,15 +24,13 @@ namespace Full_GRASP_And_SOLID.Library
         {
             this.steps.Remove(step);
         }
-        public double GetProductionCost()
+        public double GetProductionCost(Step step)
 
     //Lo hicimos en esta clase xq es la contiene toda la información para realizar el calculo (por metodo EXPERT)
         {
             double costo = 0;
-            foreach (Step step in this.steps)
-            {
-                costo = costo + step.Quantity * step.Input.UnitCost + step.Equipment.HourlyCost * step.Time; 
-            }
+            costo = costo + step.Quantity * step.Input.UnitCost + step.Equipment.HourlyCost * step.Time; 
+            
             
             return costo;
         }
@@ -44,7 +42,7 @@ namespace Full_GRASP_And_SOLID.Library
             {
                 Console.WriteLine($"{step.Quantity} de '{step.Input.Description}' " +
                     $"usando '{step.Equipment.Description}' durante {step.Time}");
-                Console.WriteLine($"Costo total de producción: {this.GetProductionCost()}:");
+                Console.WriteLine($"Costo total de producción: {this.GetProductionCost(step)}:");
                 
             }
         }
